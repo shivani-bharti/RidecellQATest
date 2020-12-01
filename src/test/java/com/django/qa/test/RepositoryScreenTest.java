@@ -76,7 +76,7 @@ public class RepositoryScreenTest extends BaseTestCase {
 		Map<List<String>, List<String>> hm=repositoryScreen.fetchRepoNameAndDescription();
 		System.out.println(hm.values());
 		Map<List<String>,List<String>> hm1=fetchRepoAPI.fetchRepoNamdAndDesc();
-		Assert.assertNotEquals(hm.values(), hm1.values());
+		Assert.assertEquals(hm.values(), hm1.values());
 		log.info("Matched result in repo description");
 	}
 

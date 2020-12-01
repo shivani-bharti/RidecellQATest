@@ -1,0 +1,2 @@
+02-12-2020 01:51:06 INFO [BaseTestCase]: connection To endpoint established
+02-12-2020 01:51:08 INFO [FetchRepoAPI]: Response status of request is HTTP/1.1 404 Not Found

@@ -25,6 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Optional;
 
 import com.aventstack.extentreports.Status;
 
@@ -34,7 +35,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTestCase {
 	public static WebDriver driver;
-	private static String endFilePath="/resources/properties/portal.properties";
+	private static String endPropertiesFilePath="/resources/properties/portal.properties";
 	private static String logResourcePath="/resources/properties/log4j.xml";
 	public static InputStream responseStream;
 	public static Properties prop;
@@ -42,7 +43,7 @@ public class BaseTestCase {
 	public final static Logger log=Logger.getLogger(BaseTestCase.class.getName());
 
 	public BaseTestCase() { try { 
-		String propertiesPath=System.getProperty("user.dir")+endFilePath;
+		String propertiesPath=System.getProperty("user.dir")+endPropertiesFilePath;
 		log.info(propertiesPath);
 		String logpropertiesPath=System.getProperty("user.dir")+logResourcePath;
 		log.info(logpropertiesPath);
@@ -72,13 +73,12 @@ public class BaseTestCase {
 		}
 
 	}
-	public WebDriver initDriver(String browserName) {
+	public WebDriver initDriver(@Optional("Chrome")String browserName) {
 		if(browserName.equals("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
 			driver.manage().window().maximize();
 		}else if (browserName.equals("Firefox")) {
-			WebDriverManager.firefoxdriver().avoidAutoVersion();
 			WebDriverManager.firefoxdriver().setup();
 			driver=new FirefoxDriver();
 			driver.manage().window().maximize();
@@ -114,7 +114,7 @@ public class BaseTestCase {
 		try {
 
 			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(prop.getProperty("base_uri")+prop.getProperty("/django/repos"));
+			HttpGet request = new HttpGet(prop.getProperty("base_uri")+prop.getProperty("API_endpoint"));
 			response = client.execute(request);
 
 			log.info("connection To endpoint established");

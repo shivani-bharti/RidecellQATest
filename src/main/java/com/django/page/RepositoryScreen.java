@@ -3,6 +3,7 @@ package com.django.page;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -70,9 +71,7 @@ public class RepositoryScreen extends BaseTestCase {
 		}
 		Collections.sort(repoName);
 		Collections.sort(repoDescription);
-		hm.put(repoName, repoDescription);
-		
-		
+		  hm.put(repoName, repoDescription);
 		}catch(Exception e) {
 			ReportingUtility.test.log(Status.FAIL, "Error while adding list of repo name and description");
 		}
